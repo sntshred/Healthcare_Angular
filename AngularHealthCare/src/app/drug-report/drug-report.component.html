@@ -1,0 +1,45 @@
+<label for="">{{ pageTitle }}</label>
+<hr />
+Filter : &nbsp;<input
+  type="text"
+  name="filter"
+  [(ngModel)]="listFilter"
+  id=""
+/>
+<Br />
+
+<label for="">{{ _listFilter }}</label>
+<hr />
+<table border="1px">
+  <tr>
+    <th>month_dispensed</th>
+    <th>abstral</th>
+    <th>actiq</th>
+    <th>duragesic</th>
+    <th>fentanyl</th>
+    <th>abstral</th>
+    <th>fentanyl_citrate</th>
+    <th>lazanda</th>
+    <th>subsys</th>
+    <th>all_drug_total</th>
+    <th>Rating</th>
+  </tr>
+  <tr *ngFor="let druginfo of filterDrugs.slice(0, 15)">
+    <td>{{ druginfo.month_dispensed }}</td>
+    <td>{{ druginfo.abstral }}</td>
+    <td>{{ druginfo.actiq }}</td>
+    <td>{{ druginfo.duragesic }}</td>
+    <td>{{ druginfo.fentanyl }}</td>
+    <td>{{ druginfo.abstral }}</td>
+    <td>{{ druginfo.fentanyl_citrate }}</td>
+    <td>{{ druginfo.lazanda }}</td>
+    <td>{{ druginfo.subsys }}</td>
+    <td>{{ druginfo.all_drug_total }}</td>
+    <td>
+      <ah-star
+        [rating]="druginfo.abstral"
+        (ratingClicked)="onRatingClicked($event)"
+      ></ah-star>
+    </td>
+  </tr>
+</table>
