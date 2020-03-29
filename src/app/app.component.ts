@@ -5,7 +5,13 @@ import { Component } from "@angular/core";
   template: `
     <div>
       <h1>{{ pageTitle }}</h1>
-      <drug-report> </drug-report>
+      <ul>
+        <li><a [routerLink]="['/welcome']">Home</a></li>
+        <li><a [routerLink]="['/drugs']">Drug</a></li>
+      </ul>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
     </div>
   `
 })

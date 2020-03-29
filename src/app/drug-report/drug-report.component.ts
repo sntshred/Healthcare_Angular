@@ -4,7 +4,6 @@ import { ConstantPool } from "@angular/compiler";
 import { DrugService } from "./drug.service";
 
 @Component({
-  selector: "drug-report",
   templateUrl: "./drug-report.component.html",
   styleUrls: ["./drug-report.component.css"]
 })
@@ -30,10 +29,16 @@ export class DrugReportComponent implements OnInit {
       : this.DrugInfo;
   }
 
+  //Good place to retrive the data
   ngOnInit(): void {
-    this.DrugInfo = this.drugService.getDrugInfo();
-    this.filterDrugs = this.DrugInfo;
+    this.drugService.getDrugInfo().subscribe({
+      next: drugs => {
+        this.DrugInfo = drugs;
+        this.filterDrugs = this.DrugInfo;
+      }
+    });
   }
+
   performfilterDrugs(fiterBy: string): IDruginfo[] {
     return this.DrugInfo.filter(
       (drug: IDruginfo) => drug.month_dispensed === fiterBy
